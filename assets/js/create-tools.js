@@ -134,4 +134,67 @@ new ToolBuilder("Encode Morse", "Encode text to Morse Code", "Encoding")
     })
     .build()
 
+// Generate random number
+new ToolBuilder("Random number generator", "Generate a random number", "Generator")
+    .addInput("Min", "number", {placeholder: "12", value: 1})
+    .addInput("Max", "number", {placeholder: "26", value: 10})
+    .addInput("Amount", "number", {placeholder: "1", value: 1})
+    .addInput("Decimal", "checkbox")
+    .addButton("Generate", (inputs, result) => {
+        let min = inputs["Min"].value
+        let max = inputs["Max"].value
+        let amount = inputs["Amount"].value
+        if (parseInt(amount) > 1000)
+            if (!confirm("This operation can cause lag, do you wish to continue?"))
+                return
+        if (!(min + max + amount).match(/^\d+$/)) {
+            result("Invalid input - only numbers allowed", true)
+            return
+        }
+        let generated = ""
+        for (let i = 0; i < parseInt(amount); i++) {
+            if (!inputs["Decimal"].checked)
+                generated += Math.round(parseInt(min) + Math.random() * (max - 1)) + "\n"
+            else
+                generated += parseInt(min) + Math.random() * (max - 1) + "\n"
+        }
+        result(generated)
+    })
+    .build()
+
+// Generate random string
+new ToolBuilder("Random string generator", "Generate a random string of characters", "Generator")
+    .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
+    .addInput("Length", "number", {placeholder: "10", value: 10})
+    .addInput("Amount", "number", {placeholder: "1", value: 1})
+    .addInput("Use custom characters", "checkbox")
+    .addButton("Generate", (inputs, result) => {
+        let custom = inputs["Custom characters"].value
+        let length = inputs["Length"].value
+        let amount = inputs["Amount"].value
+        if (parseInt(amount) > 100 || parseInt(length) > 10000)
+            if (!confirm("This operation can cause lag, do you wish to continue?"))
+                return
+        if (!custom)
+            result("(Custom characters) Invalid input - can't be empty", true)
+        if (!(amount + length).match(/^\d+$/)) {
+            result("(Length/Amount) Invalid input - only numbers allowed", true)
+            return
+        }
+        let default_set = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ"
+        let generated = ""
+        for (let i = 0; i < parseInt(amount); i++) {
+            let str = ""
+            for (let j = 0; j < parseInt(length); j++) {
+                if (!inputs["Use custom characters"].checked)
+                    str += default_set.split("").at(Math.random() * default_set.length)
+                else
+                    str += custom.split("").at(Math.random() * custom.length)
+            }
+            generated += str + "\n"
+        }
+        result(generated)
+    })
+    .build()
+
 loadAll(parent)
