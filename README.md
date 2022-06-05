@@ -10,7 +10,7 @@ I support all kinds of tools. Please avoid the use public libraries
 ### How to add your own tool
 
 If you add a new tool, the code for the tool has to be added
-to [`assets/js/create-tools.js`](https://github.com/ShortyDev/tools/tree/main/assets/js/create-tools.js) following the naming
+to [`assets/js/create-tools.js`](https://github.com/ShortyDev/tools/tree/main/assets/js/create-tools.js) following the
 convention:
 
 - Product or standard names (like SHA256 or Morse) have to be written in the proper case
