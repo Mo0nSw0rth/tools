@@ -73,6 +73,14 @@ a {
     border-radius: 3px;
     margin-right: 10px;
 }
+.button-loader {
+    background-color: #6b6b6b;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
 .tool {
     margin-top: 10px;
     display: none;

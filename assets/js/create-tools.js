@@ -168,6 +168,10 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Use custom characters", "checkbox")
+    .addLoaderButton("Load password preset", (inputs, result) => {
+        inputs["Custom characters"].value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789~`! @#$%^&*()_-+={[}]|\\:;\"'<,>.?/"
+        inputs["Use custom characters"].checked = true
+    })
     .addActionButton("Generate", (inputs, result) => {
         let custom = inputs["Custom characters"].value
         let length = inputs["Length"].value

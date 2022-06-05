@@ -36,6 +36,15 @@ class ToolBuilder {
         return this
     }
 
+    addLoaderButton = (text, logic) => {
+        this.buttons.push({
+            text: text,
+            onClick: logic,
+            loader: true
+        })
+        return this
+    }
+
     addActionButton = (text, logic) => {
         this.buttons.push({
             text: text,
@@ -74,7 +83,38 @@ class ToolBuilder {
         })
         domResultDiv.appendChild(domInputDiv)
         domResultDiv.appendChild(domResult)
-        this.buttons.forEach((button) => {
+        let domLBDiv = document.createElement("div")
+        domLBDiv.className = "flex flex-row"
+        this.buttons.filter(b => b.loader).forEach((button) => {
+            let domButton = document.createElement("button")
+            domButton.innerText = button.text
+            domButton.className = "button-loader"
+            domButton.onclick = () => {
+                let elements = [...this.toolDiv.getElementsByTagName("input")]
+                let map = {}
+                elements.filter(e => e.tagName === "INPUT").forEach(e => {
+                    map[e.name] = e
+                })
+                button.onClick(map, (result, error) => {
+                    if (typeof result === "string" || typeof result == "number" || !result) {
+                        let resultText = result
+                        result = document.createElement("p")
+                        result.innerText = resultText
+                    }
+                    if (domResult.hasChildNodes()) {
+                        domResult.removeChild(domResult.firstChild)
+                    }
+                    if (error) {
+                        result.setAttribute("error", "true")
+                    }
+                    result.className = "result break-all"
+                    domResult.appendChild(result)
+                })
+            }
+            domLBDiv.appendChild(domButton)
+        })
+        domResultDiv.appendChild(domLBDiv)
+        this.buttons.filter(b => !b.loader).forEach((button) => {
             let domButton = document.createElement("button")
             domButton.innerText = button.text
             domButton.className = "button-slim"
