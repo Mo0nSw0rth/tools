@@ -175,8 +175,10 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
         if (parseInt(amount) > 100 || parseInt(length) > 10000)
             if (!confirm("This operation can cause lag, do you wish to continue?"))
                 return
-        if (!custom)
+        if (!custom && inputs["Use custom characters"].checked) {
             result("(Custom characters) Invalid input - can't be empty", true)
+            return
+        }
         if (!(amount + length).match(/^\d+$/)) {
             result("(Length/Amount) Invalid input - only numbers allowed", true)
             return
