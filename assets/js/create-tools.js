@@ -164,9 +164,9 @@ new ToolBuilder("Random number generator", "Generate a random number", "Generato
 
 // Generate random string
 new ToolBuilder("Random string generator", "Generate a random string of characters", "Generator")
-    .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Length", "number", {placeholder: "10", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
+    .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Use custom characters", "checkbox")
     .addActionButton("Generate", (inputs, result) => {
         let custom = inputs["Custom characters"].value
