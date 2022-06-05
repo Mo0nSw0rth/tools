@@ -1,14 +1,16 @@
+const loadedTools = []
 class ToolBuilder {
 
     inputs = []
     buttons = []
 
-    constructor(name, description, type, parent) {
+    constructor(name, description, type) {
         let domToolDiv = document.createElement("div")
         domToolDiv.className = "listed-tool"
         let domToolTitleDiv = document.createElement("div")
         this.name = name
         this.description = description
+        this.type = type
         this.toolDiv = domToolDiv
         let domTag = document.createElement("span")
         domTag.className = "tag"
@@ -22,7 +24,7 @@ class ToolBuilder {
         domToolTitleDiv.appendChild(domTitle)
         domToolTitleDiv.appendChild(domDesc)
         domToolDiv.appendChild(domToolTitleDiv)
-        parent.appendChild(domToolDiv)
+        loadedTools.push(domToolDiv)
     }
 
     addInput = (label, type, attributes) => {
@@ -44,6 +46,7 @@ class ToolBuilder {
 
     build = () => {
         let domResultDiv = document.createElement("div")
+        domResultDiv.attributes.toolType = this.type
         domResultDiv.className = "tool flex flex-col items-start"
         let domResult = document.createElement("span")
         let domInputDiv = document.createElement("div")
@@ -105,4 +108,13 @@ class ToolBuilder {
             domResultDiv.style.display = open ? "flex" : "none"
         }
     }
+}
+const loadAll = (parent) => {
+    loadedTools.sort((a, b) => {
+        let aType = a.firstChild.firstChild.textContent
+        let bType = b.firstChild.firstChild.textContent
+        return (aType < bType) ? -1 : (aType > bType) ? 1 : 0
+    }).forEach(e => {
+        parent.appendChild(e)
+    })
 }
