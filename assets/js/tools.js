@@ -58,7 +58,7 @@ class ToolBuilder {
 
             let domInput = document.createElement("input")
             domInput.className = "input-real"
-            domInput.name = input.type
+            domInput.name = input.name
             domInput.type = input.type
             Object.keys(input.attributes).forEach((attr) => {
                 domInput[attr] = input.attributes[attr]
@@ -75,7 +75,11 @@ class ToolBuilder {
             domButton.className = "button-slim"
             domButton.onclick = () => {
                 let elements = [...this.toolDiv.getElementsByTagName("input")]
-                button.onClick(elements.filter(e => e.tagName === "INPUT"), (result, error) => {
+                let map = {}
+                elements.filter(e => e.tagName === "INPUT").forEach(e => {
+                    map[e.name] = e
+                })
+                button.onClick(map, (result, error) => {
                     if (typeof result === "string" || typeof result == "number" || !result) {
                         let resultText = result
                         result = document.createElement("p")
