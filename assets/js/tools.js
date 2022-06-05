@@ -63,6 +63,8 @@ class ToolBuilder {
             domInput.className = "input-real"
             domInput.name = input.name
             domInput.type = input.type
+            if (!input.attributes)
+                input.attributes = []
             Object.keys(input.attributes).forEach((attr) => {
                 domInput[attr] = input.attributes[attr]
             })
