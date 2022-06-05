@@ -182,7 +182,7 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
         inputs["Use custom characters"].checked = true
     })
     .addLoaderButton("Preset: a-Z0-9", (inputs) => {
-        inputs["Custom characters"].value = "bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"
+        inputs["Custom characters"].value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"
         inputs["Use custom characters"].checked = true
     })
     .addLoaderButton("Preset: 0-9", (inputs) => {
