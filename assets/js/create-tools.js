@@ -168,7 +168,7 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Use custom characters", "checkbox")
-    .addLoaderButton("Load password preset", (inputs, result) => {
+    .addLoaderButton("Load password preset", (inputs) => {
         inputs["Length"].value = 16
         inputs["Custom characters"].value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789~`! @#$%^&*()_-+={[}]|\\:;\"'<,>.?/"
         inputs["Use custom characters"].checked = true

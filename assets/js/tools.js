@@ -95,21 +95,7 @@ class ToolBuilder {
                 elements.filter(e => e.tagName === "INPUT").forEach(e => {
                     map[e.name] = e
                 })
-                button.onClick(map, (result, error) => {
-                    if (typeof result === "string" || typeof result == "number" || !result) {
-                        let resultText = result
-                        result = document.createElement("p")
-                        result.innerText = resultText
-                    }
-                    if (domResult.hasChildNodes()) {
-                        domResult.removeChild(domResult.firstChild)
-                    }
-                    if (error) {
-                        result.setAttribute("error", "true")
-                    }
-                    result.className = "result break-all"
-                    domResult.appendChild(result)
-                })
+                button.onClick(map)
             }
             domLBDiv.appendChild(domButton)
         })
