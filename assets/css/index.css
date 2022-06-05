@@ -121,3 +121,24 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+.contribute {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+.contribute * {
+    margin: 5px;
+}
+.contribute:hover {
+    animation-duration: 0.5s;
+    animation-name: shake;
+}
+
+@keyframes shake {
+    30% {
+        transform: rotate(0deg);
+    }
+    60% {
+        transform: rotate(-2deg);
+    }
+}
