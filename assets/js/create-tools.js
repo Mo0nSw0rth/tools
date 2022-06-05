@@ -168,9 +168,29 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Use custom characters", "checkbox")
-    .addLoaderButton("Load password preset", (inputs) => {
+    .addLoaderButton("Preset: Password", (inputs) => {
         inputs["Length"].value = 16
         inputs["Custom characters"].value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789~`! @#$%^&*()_-+={[}]|\\:;\"'<,>.?/"
+        inputs["Use custom characters"].checked = true
+    })
+    .addLoaderButton("Preset: A-Z", (inputs) => {
+        inputs["Custom characters"].value = "ABCDEFGHIJKLMNOPQRSTUVXYZ"
+        inputs["Use custom characters"].checked = true
+    })
+    .addLoaderButton("Preset: a-z", (inputs) => {
+        inputs["Custom characters"].value = "abcdefghijklmnopqrstuvwxyz"
+        inputs["Use custom characters"].checked = true
+    })
+    .addLoaderButton("Preset: a-Z0-9", (inputs) => {
+        inputs["Custom characters"].value = "bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"
+        inputs["Use custom characters"].checked = true
+    })
+    .addLoaderButton("Preset: 0-9", (inputs) => {
+        inputs["Custom characters"].value = "0123456789"
+        inputs["Use custom characters"].checked = true
+    })
+    .addLoaderButton("Preset: Hex", (inputs) => {
+        inputs["Custom characters"].value = "0123456789abcdef"
         inputs["Use custom characters"].checked = true
     })
     .addActionButton("Generate", (inputs, result) => {
