@@ -87,7 +87,7 @@ class ToolBuilder {
                     if (error) {
                         result.setAttribute("error", "true")
                     }
-                    result.className = "result"
+                    result.className = "result break-all"
                     domResult.appendChild(result)
                 })
             }
