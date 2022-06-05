@@ -2,7 +2,7 @@ const parent = document.getElementById("tools")
 // Binary to decimal
 new ToolBuilder("Binary to decimal", "Convert binary to decimal", "Conversion")
     .addInput("Binary", "text", {placeholder: 1011})
-    .addButton("To Decimal", (inputs, result) => {
+    .addActionButton("To Decimal", (inputs, result) => {
         let binary = inputs["Binary"].value.replace(" ", "")
         if (!binary.match(/^[0-1]+$/)) {
             result("Invalid input - only binary allowed", true)
@@ -15,7 +15,7 @@ new ToolBuilder("Binary to decimal", "Convert binary to decimal", "Conversion")
 // Decimal to binary
 new ToolBuilder("Decimal to binary", "Convert decimal to binary", "Conversion")
     .addInput("Decimal", "text", {placeholder: 501})
-    .addButton("To Binary", (inputs, result) => {
+    .addActionButton("To Binary", (inputs, result) => {
         let decimal = inputs["Decimal"].value.replace(" ", "")
         if (!decimal.match(/^\d+$/)) {
             result("Invalid input - only decimal allowed", true)
@@ -28,7 +28,7 @@ new ToolBuilder("Decimal to binary", "Convert decimal to binary", "Conversion")
 // Decimal to hex
 new ToolBuilder("Decimal to hex", "Convert decimal to hex", "Conversion")
     .addInput("Decimal", "text", {placeholder: 501})
-    .addButton("To Hex", (inputs, result) => {
+    .addActionButton("To Hex", (inputs, result) => {
         let decimal = inputs["Decimal"].value.replace(" ", "")
         if (!decimal.match(/^\d+$/)) {
             result("Invalid input - only decimal allowed", true)
@@ -41,7 +41,7 @@ new ToolBuilder("Decimal to hex", "Convert decimal to hex", "Conversion")
 // Hex to decimal
 new ToolBuilder("Hex to decimal", "Convert hex to decimal", "Conversion")
     .addInput("Hex", "text", {placeholder: "ff5a"})
-    .addButton("To Decimal", (inputs, result) => {
+    .addActionButton("To Decimal", (inputs, result) => {
         let hexadecimal = inputs["Hex"].value.replace(" ", "")
         if (!hexadecimal.match(/^[\da-f]+$/)) {
             result("Invalid input - only hexadecimal allowed", true)
@@ -57,7 +57,7 @@ new ToolBuilder("Decode Morse", "Decode Morse Code to text", "Decoding")
     .addInput("Short signal", "text", {value: "."})
     .addInput("Long signal", "text", {value: "-"})
     .addInput("Space", "text", {value: "/"})
-    .addButton("To Text", (inputs, result) => {
+    .addActionButton("To Text", (inputs, result) => {
         let decodeMorse = (morseCode) => {
             let ref = {
                 '.-': 'a', '-...': 'b', '-.-.': 'c', '-..': 'd',
@@ -100,7 +100,7 @@ new ToolBuilder("Encode Morse", "Encode text to Morse Code", "Encoding")
     .addInput("Short signal", "text", {value: "."})
     .addInput("Long signal", "text", {value: "-"})
     .addInput("Space", "text", {value: "/"})
-    .addButton("To Morse", (inputs, result) => {
+    .addActionButton("To Morse", (inputs, result) => {
         let encodeMorse = (morseCode) => {
             let ref = {
                 'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..',
@@ -140,7 +140,7 @@ new ToolBuilder("Random number generator", "Generate a random number", "Generato
     .addInput("Max", "number", {placeholder: "26", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Decimal", "checkbox")
-    .addButton("Generate", (inputs, result) => {
+    .addActionButton("Generate", (inputs, result) => {
         let min = inputs["Min"].value
         let max = inputs["Max"].value
         let amount = inputs["Amount"].value
@@ -168,7 +168,7 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
     .addInput("Length", "number", {placeholder: "10", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Use custom characters", "checkbox")
-    .addButton("Generate", (inputs, result) => {
+    .addActionButton("Generate", (inputs, result) => {
         let custom = inputs["Custom characters"].value
         let length = inputs["Length"].value
         let amount = inputs["Amount"].value

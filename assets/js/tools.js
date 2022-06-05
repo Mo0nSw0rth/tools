@@ -36,7 +36,7 @@ class ToolBuilder {
         return this
     }
 
-    addButton = (text, logic) => {
+    addActionButton = (text, logic) => {
         this.buttons.push({
             text: text,
             onClick: logic
