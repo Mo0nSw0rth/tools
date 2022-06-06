@@ -237,4 +237,29 @@ new ToolBuilder("IPv6 shortener", "Short an IPv6 address", "Networking")
     })
     .build()
 
+// Random color
+new ToolBuilder("Random color", "Randomly generate a color", "Generator")
+    .addActionButton("Generate", (__, result) => {
+        let randomColor = () => {
+            let str = ""
+            let set = "0123456789abcdef"
+            for (let i = 0; i < 6; i++) {
+                    str += set.split("").at(Math.random() * set.length)
+            }
+            return str
+        }
+        let containingDiv = document.createElement("div")
+        let color = document.createElement("span")
+        let hexColor = "#" + randomColor()
+        color.innerText = hexColor
+        color.style.backgroundColor = hexColor
+        color.style.padding = "20px 20px"
+        containingDiv.appendChild(color)
+        containingDiv.style.display = "flex"
+        containingDiv.style.margin = "3"
+        containingDiv.style.padding = "0"
+        result(containingDiv)
+    })
+    .build()
+
 loadAll(parent)
