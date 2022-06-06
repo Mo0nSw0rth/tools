@@ -311,6 +311,15 @@ new ToolBuilder("SHA512 Hash", "Hash a string with SHA512", "Hashing")
     })
     .build()
 
+// Random item picker
+new ToolBuilder("Random item picker", "Pick a random item from a list", "Random")
+    .addInput("List of items", "textarea", {placeholder: "First\nSecond\nThird"})
+    .addActionButton("Random item", (inputs, result) => {
+        let items = inputs["List of items"].value.split("\n").filter(s => s !== "")
+        result(items.at(Math.random() * items.length))
+    })
+    .build()
+
 async function hash(algorithm, message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest(algorithm, msgBuffer);
