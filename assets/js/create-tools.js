@@ -324,6 +324,10 @@ new ToolBuilder("Random item picker", "Pick a random item from a list", "Random"
     .addInput("List of items", "textarea", {placeholder: "First\nSecond\nThird"})
     .addActionButton("Random item", (inputs, result) => {
         let items = inputs["List of items"].value.split("\n").filter(s => s !== "")
+        if (items.length === 0) {
+            result("Please add at least 1 item to the list", true)
+            return
+        }
         result(items.at(Math.random() * items.length))
     })
     .build()
