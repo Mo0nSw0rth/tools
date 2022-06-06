@@ -94,9 +94,9 @@ class ToolBuilder {
             domButton.innerText = button.text
             domButton.className = "button-loader"
             domButton.onclick = () => {
-                let elements = [...this.toolDiv.getElementsByTagName("input")]
+                let elements = [...this.toolDiv.getElementsByTagName("input"), ...this.toolDiv.getElementsByTagName("textarea")]
                 let map = {}
-                elements.filter(e => e.tagName === "INPUT").forEach(e => {
+                elements.forEach(e => {
                     map[e.name] = e
                 })
                 button.onClick(map)
