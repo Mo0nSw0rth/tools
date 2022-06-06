@@ -224,4 +224,17 @@ new ToolBuilder("Random string generator", "Generate a random string of characte
     })
     .build()
 
+// IPv6 shortener
+new ToolBuilder("IPv6 shortener", "Short an IPv6 address", "Networking")
+    .addInput("IPv6 address", "text", {placeholder: "2001:3fac:9e5b:0000:0000:3311:0312:da61"})
+    .addActionButton("Shorten", (inputs, result) => {
+        let ipv6 = inputs["IPv6 address"].value.replace(" ", "")
+        if (!ipv6.match(/(?:^|(?<=\s))(([\da-fA-F]{1,4}:){7}[\da-fA-F]{1,4}|([\da-fA-F]{1,4}:){1,7}:|([\da-fA-F]{1,4}:){1,6}:[\da-fA-F]{1,4}|([\da-fA-F]{1,4}:){1,5}(:[\da-fA-F]{1,4}){1,2}|([\da-fA-F]{1,4}:){1,4}(:[\da-fA-F]{1,4}){1,3}|([\da-fA-F]{1,4}:){1,3}(:[\da-fA-F]{1,4}){1,4}|([\da-fA-F]{1,4}:){1,2}(:[\da-fA-F]{1,4}){1,5}|[\da-fA-F]{1,4}:((:[\da-fA-F]{1,4}){1,6})|:((:[\da-fA-F]{1,4}){1,7}|:)|fe80:(:[\da-fA-F]{0,4}){0,4}%[\da-zA-Z]+|::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|1?\d)?\d)\.){3}(25[0-5]|(2[0-4]|1?\d)?\d)|([\da-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1?\d)?\d)\.){3}(25[0-5]|(2[0-4]|1?\d)?\d))(?=\s|$)/)) {
+            result("Invalid input - only IPv6 allowed", true)
+            return
+        }
+        result(ipv6.replace(/(^|:)0+(?!:|$)/g, "$1").replace(/(:(?:0:){2,})(?!\S*\10:)/, "::"))
+    })
+    .build()
+
 loadAll(parent)
