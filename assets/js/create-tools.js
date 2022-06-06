@@ -172,7 +172,7 @@ new ToolBuilder("Random number generator", "Generate a random number", "Random")
 new ToolBuilder("Random string generator", "Generate a random string of characters", "Random")
     .addInput("Length", "number", {placeholder: "10", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
-    .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
+    .addInput("Custom characters", "textarea", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
     .addInput("Use custom characters", "checkbox")
     .addLoaderButton("Preset: Password", (inputs) => {
         inputs["Length"].value = 16
