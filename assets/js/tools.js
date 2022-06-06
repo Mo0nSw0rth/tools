@@ -28,7 +28,7 @@ class ToolBuilder {
     }
 
     addInput = (label, type, attributes) => {
-        if (type === "textarea")
+        if (type === "textarea" && !attributes.style)
             attributes.style = "resize: both"
         this.inputs.push({
             name: label,
