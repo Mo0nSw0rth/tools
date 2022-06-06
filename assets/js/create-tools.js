@@ -135,7 +135,7 @@ new ToolBuilder("Encode Morse", "Encode text to Morse Code", "Encoding")
     .build()
 
 // Generate random number
-new ToolBuilder("Random number generator", "Generate a random number", "Generator")
+new ToolBuilder("Random number generator", "Generate a random number", "Random")
     .addInput("Min", "number", {placeholder: "12", value: 1})
     .addInput("Max", "number", {placeholder: "26", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
@@ -169,7 +169,7 @@ new ToolBuilder("Random number generator", "Generate a random number", "Generato
     .build()
 
 // Generate random string
-new ToolBuilder("Random string generator", "Generate a random string of characters", "Generator")
+new ToolBuilder("Random string generator", "Generate a random string of characters", "Random")
     .addInput("Length", "number", {placeholder: "10", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Custom characters", "text", {placeholder: "abcdefghijklmnopqrstuvwxyz"})
@@ -244,7 +244,7 @@ new ToolBuilder("IPv6 shortener", "Short an IPv6 address", "Networking")
     .build()
 
 // Random color
-new ToolBuilder("Random color", "Randomly generate a color", "Generator")
+new ToolBuilder("Random color", "Randomly generate a color", "Random")
     .addActionButton("Generate", (__, result) => {
         let randomColor = () => {
             let str = ""
