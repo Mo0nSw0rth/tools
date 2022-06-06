@@ -250,7 +250,7 @@ new ToolBuilder("Random color", "Randomly generate a color", "Generator")
             let str = ""
             let set = "0123456789abcdef"
             for (let i = 0; i < 6; i++) {
-                    str += set.split("").at(Math.random() * set.length)
+                str += set.split("").at(Math.random() * set.length)
             }
             return str
         }
