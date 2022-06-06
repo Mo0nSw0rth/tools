@@ -140,6 +140,12 @@ new ToolBuilder("Random number generator", "Generate a random number", "Generato
     .addInput("Max", "number", {placeholder: "26", value: 10})
     .addInput("Amount", "number", {placeholder: "1", value: 1})
     .addInput("Decimal", "checkbox")
+    .addLoaderButton("Preset: Dice", (inputs) => {
+        inputs["Min"].value = "1"
+        inputs["Max"].value = "6"
+        inputs["Amount"].value = "1"
+        inputs["Decimal"].checked = false
+    })
     .addActionButton("Generate", (inputs, result) => {
         let min = inputs["Min"].value
         let max = inputs["Max"].value
@@ -259,6 +265,13 @@ new ToolBuilder("Random color", "Randomly generate a color", "Generator")
         containingDiv.style.margin = "3"
         containingDiv.style.padding = "0"
         result(containingDiv)
+    })
+    .build()
+
+// Generate true or false
+new ToolBuilder("True or false", "Get true or false", "Util")
+    .addActionButton("Generate", (__, result) => {
+        result(Math.random() > .5 ? "True" : "False")
     })
     .build()
 
