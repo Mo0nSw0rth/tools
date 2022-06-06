@@ -5,7 +5,7 @@ This is the GitHub repository for [my tools site](https://tools.shortydev.eu).
 ## Contribute
 
 Feel free to fork and contribute to the public tools page!
-I support all kinds of tools. Please avoid the use public libraries 
+I support all kinds of tools. Please avoid the use of public libraries 
 
 ### How to add your own tool
 
