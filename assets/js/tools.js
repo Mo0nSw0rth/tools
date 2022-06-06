@@ -28,6 +28,8 @@ class ToolBuilder {
     }
 
     addInput = (label, type, attributes) => {
+        if (type === "textarea")
+            attributes.style = "resize: both"
         this.inputs.push({
             name: label,
             type: type,
@@ -61,17 +63,19 @@ class ToolBuilder {
         let domInputDiv = document.createElement("div")
         domInputDiv.className = "flex flex-row"
         this.inputs.forEach((input) => {
+            let isTextArea = input.type === "textarea"
             let domInputIDiv = document.createElement("div")
-            domInputIDiv.className = "flex flex-col items-start input-i"
+            domInputIDiv.className = "flex flex-col input-i"
             let domLabel = document.createElement("label")
             domLabel.innerText = input.name
             domLabel.className = "input-label"
             domLabel["for"] = input.type
 
-            let domInput = document.createElement("input")
+            let domInput = document.createElement(isTextArea ? "textarea" : "input")
             domInput.className = "input-real"
             domInput.name = input.name
-            domInput.type = input.type
+            if (!isTextArea)
+                domInput.type = input.type
             if (!input.attributes)
                 input.attributes = []
             Object.keys(input.attributes).forEach((attr) => {
@@ -105,9 +109,9 @@ class ToolBuilder {
             domButton.innerText = button.text
             domButton.className = "button-slim"
             domButton.onclick = () => {
-                let elements = [...this.toolDiv.getElementsByTagName("input")]
+                let elements = [...this.toolDiv.getElementsByTagName("input"), ...this.toolDiv.getElementsByTagName("textarea")]
                 let map = {}
-                elements.filter(e => e.tagName === "INPUT").forEach(e => {
+                elements.forEach(e => {
                     map[e.name] = e
                 })
                 button.onClick(map, (result, error) => {

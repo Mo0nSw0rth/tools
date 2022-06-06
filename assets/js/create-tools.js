@@ -277,7 +277,7 @@ new ToolBuilder("True or false", "Get true or false", "Util")
 
 // Binary to ASCII
 new ToolBuilder("Binary to ASCII", "Convert Binary to ASCII", "Conversion")
-    .addInput("Binary", "text", {placeholder: "01100111 01101111 01101111 01100100"})
+    .addInput("Binary", "textarea", {placeholder: "01100111 01101111 01101111 01100100"})
     .addActionButton("To ASCII", (inputs, result) => {
         let binary = inputs["Binary"].value
         let bin = binary.split(" ")
