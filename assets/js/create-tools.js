@@ -289,4 +289,34 @@ new ToolBuilder("Binary to ASCII", "Convert Binary to ASCII", "Conversion")
     })
     .build()
 
+// SHA256 Hash
+new ToolBuilder("SHA256 Hash", "Hash a string with SHA256", "Hashing")
+    .addInput("Text", "text", {placeholder: "Shorty"})
+    .addActionButton("Hash", (inputs, result) => {
+        let text = inputs["Text"].value
+        hash("SHA-256", text).then(hash => {
+            result(hash)
+        })
+    })
+    .build()
+
+// SHA512 Hash
+new ToolBuilder("SHA512 Hash", "Hash a string with SHA512", "Hashing")
+    .addInput("Text", "text", {placeholder: "Shorty"})
+    .addActionButton("Hash", (inputs, result) => {
+        let text = inputs["Text"].value
+        hash("SHA-512", text).then(hash => {
+            result(hash)
+        })
+    })
+    .build()
+
+async function hash(algorithm, message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest(algorithm, msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 loadAll(parent)
