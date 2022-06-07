@@ -276,13 +276,6 @@ new ToolBuilder("Random color", "Randomly generate a color", "Random")
     })
     .build()
 
-// Generate true or false
-new ToolBuilder("True or false", "Get true or false", "Util")
-    .addActionButton("Generate", (__, result) => {
-        result(Math.random() > .5 ? "True" : "False")
-    })
-    .build()
-
 // Binary to ASCII
 new ToolBuilder("Binary to ASCII", "Convert Binary to ASCII", "Conversion")
     .addInput("Binary", "textarea", {placeholder: "01100111 01101111 01101111 01100100"})
@@ -322,6 +315,9 @@ new ToolBuilder("SHA512 Hash", "Hash a string with SHA512", "Hashing")
 // Random item picker
 new ToolBuilder("Random item picker", "Pick a random item from a list", "Random")
     .addInput("List of items", "textarea", {placeholder: "First\nSecond\nThird"})
+    .addLoaderButton("Preset: True/False", (inputs) => {
+        inputs["List of items"].value = "True\nFalse"
+    })
     .addActionButton("Random item", (inputs, result) => {
         let items = inputs["List of items"].value.split("\n").filter(s => s !== "")
         if (items.length === 0) {
