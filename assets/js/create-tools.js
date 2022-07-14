@@ -328,6 +328,14 @@ new ToolBuilder("Random item picker", "Pick a random item from a list", "Random"
     })
     .build()
 
+new ToolBuilder("Ticks to Millis", "Minecraft Server Ticks to Millis", "Conversion")
+    .addInput("Millis", "number", {placeholder: "Ticks"})
+    .addActionButton("To Millis", (inputs, result) => {
+        let millis = inputs["Millis"].value
+        result(millis * 50)
+    })
+    .build()
+
 async function hash(algorithm, message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest(algorithm, msgBuffer);
