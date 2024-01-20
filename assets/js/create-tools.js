@@ -38,6 +38,33 @@ new ToolBuilder("Decimal to hex", "Convert decimal to hex", "Conversion")
     })
     .build()
 
+// Decimal to octal
+new ToolBuilder("Decimal to octal", "Convert decimal to octal", "Conversion")
+    .addInput("Decimal", "text", {placeholder: 250})
+    .addActionButton("To Octal", (inputs, result) => {
+        let decimal = inputs["Decimal"].value.replace(" ", "")
+        if (!decimal.match(/^\d+$/)) {
+            result("Invalid input - only decimal allowed", true)
+            return
+        }
+        result(parseInt(decimal).toString(8))
+    })
+    .build()
+
+// Octal to decimal
+new ToolBuilder("Octal to decimal", "Convert octal to decimal", "Conversion")
+    .addInput("Octal", "text", {placeholder: "765"})
+    .addActionButton("To Decimal", (inputs, result) => {
+        let octal = inputs["Octal"].value.replace(" ", "");
+        if (!octal.match(/^[0-7]+$/)) {
+            result("Invalid input - only octal allowed", true);
+            return;
+        }
+        result(parseInt(octal, 8));
+    })
+    .build();
+
+
 // Hex to decimal
 new ToolBuilder("Hex to decimal", "Convert hex to decimal", "Conversion")
     .addInput("Hex", "text", {placeholder: "ff5a"})
@@ -50,6 +77,7 @@ new ToolBuilder("Hex to decimal", "Convert hex to decimal", "Conversion")
         result(parseInt(hexadecimal, 16))
     })
     .build()
+
 
 // Decode morse
 new ToolBuilder("Decode Morse", "Decode Morse Code to text", "Decoding")
@@ -289,6 +317,65 @@ new ToolBuilder("Binary to ASCII", "Convert Binary to ASCII", "Conversion")
         result(binCode.join(""))
     })
     .build()
+
+
+// Base64 encode
+new ToolBuilder("Base64 encode", "Encode a string with Base64", "Encoding")
+    .addInput("Text", "text", {placeholder: "Shorty"})
+    .addActionButton("Encode", (inputs, result) => {
+        let text = inputs["Text"].value
+        result(btoa(text))
+    })
+    .build()
+
+// URL encode
+new ToolBuilder("URL encode", "Encode a URL", "Encoding")
+    .addInput("Text", "text", {placeholder: "https://tools.moondev.eu/"})
+    .addActionButton("Encode", (inputs, result) => {
+        let text = inputs["Text"].value
+        result(encodeURIComponent(text))
+    })
+    .build()
+
+new ToolBuilder("URL decode", "Decode a URL", "Decoding")
+    .addInput("Text", "text", {placeholder: "https%3A%2F%2Ftools.moondev.eu%2F"})
+    .addActionButton("Decode", (inputs, result) => {
+        let text = inputs["Text"].value
+        result(decodeURIComponent(text))
+    })
+    .build()
+
+// Base64 decode
+new ToolBuilder("Base64 decode", "Decode a string with Base64", "Decoding")
+    .addInput("Text", "text", {placeholder: "Encoded Base64 string"})
+    .addActionButton("Decode", (inputs, result) => {
+        let text = inputs["Text"].value
+        result(atob(text))
+    })
+    .build()
+
+// SHA1 Hash
+new ToolBuilder("SHA1 Hash", "Hash a string with SHA1", "Hashing")
+    .addInput("Text", "text", {placeholder: "Shorty"})
+    .addActionButton("Hash", (inputs, result) => {
+        let text = inputs["Text"].value
+        hash("SHA-1", text).then(hash => {
+            result(hash)
+        })
+    })
+    .build()
+
+// SHA384 Hash
+new ToolBuilder("SHA384 Hash", "Hash a string with SHA384", "Hashing")
+    .addInput("Text", "text", {placeholder: "Shorty"})
+    .addActionButton("Hash", (inputs, result) => {
+        let text = inputs["Text"].value
+        hash("SHA-384", text).then(hash => {
+            result(hash)
+        })
+    })
+    .build()
+
 
 // SHA256 Hash
 new ToolBuilder("SHA256 Hash", "Hash a string with SHA256", "Hashing")
